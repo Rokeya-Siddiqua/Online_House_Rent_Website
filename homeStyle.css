@@ -1,0 +1,141 @@
+@import "https://use.fontawesome.com/releases/v5.5.0/css/all.css";
+body{
+  margin: 0;
+  padding: 0;
+  background: #c7b3c4;
+  background-size: cover;
+ 
+}
+@media only screen and (max-width: 500px) {
+  body {
+    background: #9c2e8c;
+  }
+}
+
+/***************** header start ****************************************/
+/********************************************/
+.headerClass{
+  background-color: black;
+  width: 100%;
+  height: 120px;
+}
+.pictureDiv {
+    background-color: #7a8785;
+    width: 15%;
+    height: 100px;
+    text-align: center;
+    margin-left: 20px;
+    margin-top: 10px;
+    margin-right: 150px;
+    float: left;
+}
+.imgClass{
+  width: 98%;
+  height: 98px;
+  background-color: blueviolet;
+}
+.nav {
+    background-color: black;
+    float: left;
+    margin-top: 10px;
+    width: 65%;
+}
+.tableClass {
+    width: 100%; 
+    height: 44px;
+    background-color: black;
+}
+.tableClass tr,th {
+    text-align: center;
+    background-color: black;
+}
+.tableClass a {
+    color: white;
+    font-size: 30px;
+    font-weight: bolder;
+    padding: 1%; 
+    font-size: "20px";
+    transition: font-size 2s;
+    background-color: black;
+}
+.tableClass a:hover {
+    color: darkgreen;
+    cursor: pointer;
+    background-color: darkgray;
+    font-size: 35px;
+}
+
+/*******************************************/
+/*****************************************   header end **********************************/
+
+.houseinfoheading{
+  font-size: 59px;
+  font-weight: bolder;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: #5f1712;
+  animation: move 15s linear infinite;
+  text-shadow: 5px 3px 3px rgb(39, 35, 35);
+}
+@keyframes move {
+0% {
+  transform: translate(0);
+}
+50% {
+  transform: translate(50%);
+}
+}
+.houseinfoheading:hover{
+  cursor: no-drop;
+}
+
+
+
+/*                                  footer start                                          */
+.contact{
+  width: 100%;
+  background: #000;
+  color: white;
+  padding: 10px;
+  font-size: 20px;
+  overflow: auto;
+  border: 5px solid white;
+  
+}
+.contact input{
+  background: none;
+  color: white;
+  font-size: 20px;
+  width: auto;
+  margin: 0 10%;
+  border: 1px solid black;
+}
+.contact input:hover{
+  cursor: pointer;
+  box-shadow: 5px 5px 5px rgb(235, 172, 172);
+  border-radius: 15px;
+  background-color: darkgreen;
+}
+
+.contact h2{
+  font-size: 30px;
+  margin-bottom: 30px;
+  padding: 5px;
+  margin: 5px;
+  background-color: none;
+  width: auto;
+}
+h2:hover{
+  cursor: no-drop;
+  border: 1px solid bisque;
+  border-radius: 10px;
+  background-color: #5a0904;
+  box-shadow: 5px 5px 5px rgb(250, 246, 246);
+}
+.sectionOne {
+  float: left;
+  margin-left: 25%;
+}
+.sectionTwo {
+  float: right;
+  margin-right: 25%;
+}

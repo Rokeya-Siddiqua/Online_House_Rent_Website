@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Google Map</title>
+   <style>
+      * {
+         margin: 0;
+         padding: 0;
+         background-color: rgb(214, 218, 218);
+      }
+      /***************** header start ****************************************/
+/********************************************/
+.headerClass{
+  background-color: black;
+  width: 100%;
+  height: 120px;
+}
+.pictureDiv {
+    background-color: #7a8785;
+    width: 15%;
+    height: 100px;
+    text-align: center;
+    margin-left: 20px;
+    margin-top: 10px;
+    margin-right: 150px;
+    float: left;
+}
+.imgClass{
+  width: 98%;
+  height: 98px;
+  background-color: blueviolet;
+}
+.nav {
+    background-color: black;
+    float: left;
+    margin-top: 10px;
+    width: 65%;
+}
+.tableClass {
+    width: 100%; 
+    height: 44px;
+    background-color: black;
+}
+.tableClass tr,th {
+    text-align: center;
+    background-color: black;
+}
+.tableClass a {
+    color: white;
+    font-size: 30px;
+    font-weight: bolder;
+    padding: 1%; 
+    font-size: "20px";
+    transition: font-size 2s;
+    background-color: black;
+}
+.tableClass a:hover {
+    color: darkgreen;
+    cursor: pointer;
+    background-color: darkgray;
+    font-size: 35px;
+}
+
+/*******************************************/
+/*****************************************   header end **********************************/
+
+      #map{
+         margin-top: 30px;
+         margin-left: 3%;
+         width: 90%;
+         height: 500px;
+      }
+      .controls{
+         margin-top: 5px;
+         width: 50%;
+         height: 30px;
+         text-align: center;
+         margin-left: 60px;
+         border: 1px none;
+         border-radius: 20px;
+         box-shadow: 5px 5px 8px black;
+         background-color: rgb(252, 220, 140);
+         font-weight: bolder;
+         font-size: 20px;
+         color: black;
+         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      }
+      .geoDataClass{
+         border: 2px dashed darkblue;
+         font-size: 20px;
+         margin-left: 20px;
+      }
+      .geoDataClass li{
+         margin-left: 20px;
+      }
+      /*                                  footer start                                          */
+      .contact{
+         width: 100%;
+         background: #000;
+         color: white;
+         padding: 10px;
+         font-size: 20px;
+         overflow: auto;
+         border: 5px solid white;
+     }
+      .contact input{
+         background: none;
+         color: white;
+         font-size: 20px;
+         width: auto;
+         margin: 0 10%;
+         border: 1px solid black;
+      }
+      .contact input:hover{
+         cursor: pointer;
+         box-shadow: 5px 5px 5px rgb(235, 172, 172);
+         border-radius: 15px;
+         background-color: darkgreen;
+      }
+
+      .contact h2{
+         font-size: 30px;
+         margin-bottom: 30px;
+         padding: 5px;
+         margin: 5px;
+         background-color: none;
+         width: auto;
+         background-color: black;
+      }
+      h2:hover{
+         cursor: no-drop;
+         border: 1px solid bisque;
+         border-radius: 10px;
+         background-color: #5a0904;
+         box-shadow: 5px 5px 5px rgb(250, 246, 246);
+      }
+      .sectionOne {
+         float: left;
+         margin-left: 25%;
+         background-color: black;
+      }
+      .sectionTwo {
+         float: right;
+         margin-right: 25%;
+         background-color: black;
+      }
+   </style>
+</head>
+<body>
+
+   <div class="headerClass">
+
+      <div class="pictureDiv">
+        <img src="logo.png" class="imgClass">
+      </div>
+  
+      <div class='nav'>
+        <table class='tableClass'>
+            <tr>
+                <th><a href="homePage.html" target="blank">Home</a></th>
+                <th><a href="landlordPage.html" target="_blank">Landlord</a></th>
+                <th><a href="tenantPage.html" target="_blank">Tenant</astyle=></th>
+                <th><a href="fAQPage.html" target="_blank">Help</astyle=></th>
+            </tr>
+        </table>
+      </div>
+    </div> <br><br>
+
+   <?php
+      $address = "";
+      if (isset($_GET["address"])) {
+         $address = $_GET["address"];
+      }
+   ?>
+   <div class="container">
+      <!-- Search input -->
+      <input id="searchInput" class="controls" type="text" placeholder="Enter a location" value="<?php
+      echo $address; ?>">
+   </div>
+
+   <!-- Google Map-->
+   <div id="map"></div> <br><br>
+
+   <!-- display google location data-->
+   <ul class="geoDataClass">
+      <li>Full Address: <span id="locationSpanId"></span></li><br>
+      <li>Postal Code: <span id="postalCodeSpanId"></span></li><br>
+      <li>Country: <span id="countrySpanId"></span></li><br>
+      <li>Latitude: <span id="latSpanId"></span></li><br>
+      <li>Longitude: <span id="longSpanId"></span></li><br>
+   </ul>
+
+
+   <!-- Google Map JavaScript API -->
+   <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyBRSmoVf8p0BmUK_W3IsavPhdEqmaoj_Z0&callback=initMap" async defer></script>
+
+   <script>
+      function initMap() {
+         var loc = {lat: -33.8688, lng: 151.2195};
+          var map = new google.maps.Map(document.getElementById('map'), {
+            center: loc,
+            zoom: 13
+          });
+          var marker = new google.maps.Marker({
+             position: loc,
+             map: map
+          });
+          var input = document.getElementById('searchInput');
+          map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+      
+          var autocomplete = new google.maps.places.Autocomplete(input);
+          autocomplete.bindTo('bounds', map);
+      
+          var infowindow = new google.maps.InfoWindow();
+          var marker = new google.maps.Marker({
+              map: map,
+              anchorPoint: new google.maps.Point(0, -29)
+          });
+      
+          autocomplete.addListener('place_changed', function() {
+              infowindow.close();
+              marker.setVisible(false);
+              var place = autocomplete.getPlace();
+              if (!place.geometry) {
+                  window.alert("Autocomplete's returned place contains no geometry");
+                  return;
+              }
+        
+              // If the place has a geometry, then present it on a map.
+              if (place.geometry.viewport) {
+                  map.fitBounds(place.geometry.viewport);
+              } else {
+                  map.setCenter(place.geometry.location);
+                  map.setZoom(17);
+              }
+              marker.setIcon(({
+                  url: place.icon,
+                  size: new google.maps.Size(71, 71),
+                  origin: new google.maps.Point(0, 0),
+                  anchor: new google.maps.Point(17, 34),
+                  scaledSize: new google.maps.Size(35, 35)
+              }));
+              marker.setPosition(place.geometry.location);
+              marker.setVisible(true);
+          
+              var address = '';
+              if (place.address_components) {
+                  address = [
+                    (place.address_components[0] && place.address_components[0].short_name || ''),
+                    (place.address_components[1] && place.address_components[1].short_name || ''),
+                    (place.address_components[2] && place.address_components[2].short_name || '')
+                  ].join(' ');
+              }
+          
+              infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
+              infowindow.open(map, marker);
+            
+              // Location details
+              for (var i = 0; i < place.address_components.length; i++) {
+                  if(place.address_components[i].types[0] == 'postal_code'){
+                      document.getElementById('postalCodeSpanId').innerHTML = place.address_components[i].long_name;
+                  }
+                  if(place.address_components[i].types[0] == 'country'){
+                      document.getElementById('countrySpanId').innerHTML = place.address_components[i].long_name;
+                  }
+              }
+              document.getElementById('locationSpanId').innerHTML = place.formatted_address;
+              document.getElementById('latSpanId').innerHTML = place.geometry.location.lat();
+              document.getElementById('longSpanId').innerHTML = place.geometry.location.lng();
+          });
+      }
+      </script>
+   
+   <br><br>
+
+      <!-- footer start -->
+     <footer class ="contact">
+        <section class="sectionOne">
+         <h2>About Us</h2>
+         <i class='fas fa-folder-plus' style='font-size:20px;color:#8b008b;background-color: white; border-radius: 5px; width: 14%; padding-left: 2%; padding-right: 2%;'></i>
+         <input type="button" name="" value="About" onclick="aboutButton()" target="_blank">
+        </section>
+        <section class="sectionTwo">
+         <h2>Contact Us</h2>
+         <i class='fas fa-at' style='font-size:20px;color:red;background-color: white; border-radius: 5px; width: 14%; padding-left: 2%;'></i>
+         <input type="button" name="" value="Email">
+         <br><br>
+         <i class='fas fa-comment' style='font-size:20px;color:blue;background-color: white; border-radius: 5px; width: 14%; padding-left: 2%;'></i>
+         <input type="button" name="" value="Chat">
+        </section>
+        <br><br><br><br><br><br>
+        <div style="margin-left: 25%; background-color: black;">
+         <h2 style="width: 15%;">Feedback</h2>
+         <i class='fas fa-star' style='font-size:20px;color:#94800f;background-color: white; border-radius: 5px; width: 2.5%;'></i>
+         <input  style="margin-left: 1%;" type="button" name="" value="Rate and Comment">
+        </div>
+   
+      </footer>
+
+</body>
+<script type="text/javascript">
+   function aboutButton(){
+    document.location.href="aboutUs.html";
+   }
+ </script>
+</html>

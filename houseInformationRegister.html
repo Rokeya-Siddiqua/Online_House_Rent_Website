@@ -1,0 +1,454 @@
+<?php
+
+  //$flagPhp = true;
+
+
+  // database connection
+  include("connection.php");
+
+
+// for register button
+if (isset($_POST['registerButtonName'])){
+
+        //empty check
+        if($_POST['locationName'] == ""){
+            $error_msg['locationError'] = "Location cannot be empty";
+        }
+        if($_POST['sizeName'] == ""){
+          $error_msg['sizeError'] = "Size cannot be empty";
+        }
+        else if(!preg_match("/^[0-9]*$/", $_POST['sizeName'])){
+          $error_msg['sizeError'] = "Please enter numbers.";
+        }
+        if($_POST['priceName'] == ""){
+          $error_msg['priceError'] = "Rental Price cannot be empty";
+        }
+        else if(!is_numeric($_POST['priceName'])){
+          $error_msg['priceError'] = "Rental Price must be numeric";
+        }
+        if($_POST['roomName'] == ""){
+          $error_msg['roomError'] = "Total Room number cannot be empty";
+        }
+        if($_POST['bathroomName'] == ""){
+          $error_msg['bathroomError'] = "Total Bathroom number cannot be empty";
+        }
+        if($_POST['residentName'] == "NULL"){
+          $error_msg['residentError'] = "Resident type required.";
+        }
+        if(empty($_POST['serviceName'])){
+          $error_msg['serviceError'] = "Service charge information is not selected.";
+        }
+        if($_POST['emailName'] == ""){
+          $error_msg['emailError'] = "Email address cannot be empty";
+        }
+        if($_POST['cnumberName'] == ""){
+          $error_msg['cnumberError'] = "Contact number cannot be empty";
+        }
+        else if(!is_numeric($_POST['cnumberName'])){
+          $error_msg['cnumberError'] = "Contact number must be numeric";
+        }
+
+
+    // isset funtions
+    if (isset($_POST['locationName'])){
+        $loc = $_POST['locationName'];
+    }
+    if (isset($_POST['sizeName'])){
+        $sz = $_POST['sizeName'];
+    }
+    if (isset($_POST['priceName'])){
+        $price = $_POST['priceName'];
+    }
+    if (isset($_POST['roomName'])){
+        $room = $_POST['roomName'];
+    }
+    if (isset($_POST['bathroomName'])){
+        $bathrm = $_POST['bathroomName'];
+    }
+    if (isset($_POST['radio'])){
+        $grg = $_POST['radio'];
+    }
+    if(isset($_POST['residentName'])) {
+        $resiType = $_POST['residentName'];
+    }
+    if (isset($_POST['serviceName'])){
+        $ser = $_POST['serviceName'];
+    }
+    if (isset($_POST['petName'])){
+        $pet = $_POST['petName'];
+    }
+    if (isset($_POST['directionName'])){
+        $dir = $_POST['directionName'];
+    }
+    if(!empty($_POST["nearBy"])) {
+        $nrBy = implode(' , ',$_POST["nearBy"]);
+    }
+    if (isset($_POST['otherName'])){
+        $other = $_POST['otherName'];
+    }
+    if (isset($_POST['cnumberName'])){
+        $contact = $_POST['cnumberName'];
+    }
+    if (isset($_POST['emailName'])){
+        $eml = $_POST['emailName'];
+    }
+
+    // for image 
+    if (isset($_FILES['fileName'])){
+
+
+        $imgName = $_FILES['fileName']['name'];
+        $imgSize = $_FILES['fileName']['size'];
+        $tempName = $_FILES['fileName']['tmp_name'];
+        $error = $_FILES['fileName']['error'];
+
+
+        if ($error === 0){
+            if ($imgSize > 430100) {
+                //$flagPhp = false;
+                $em =  "Sorry your file is too large.";
+                header("Location:houseInformationRegisterPhp.php?error=$em");
+            }
+            else {
+                $img_ex = pathinfo($imgName, PATHINFO_EXTENSION);
+                //echo($img_ex);
+                $img_ex_lc = strtolower($img_ex);
+
+                $allowerd_exs = array("jpg", "jpeg", "phg");
+
+                if (in_array($img_ex_lc,$allowerd_exs)){
+                    $new_imgName = uniqid("IMG", true).'.'.$img_ex_lc;
+                    $img_uploadPath = 'imgFolder/'.$new_imgName;
+                    //move_uploaded_file($tempName, $img_uploadPath);
+
+                    // new
+                    $imgBlob = addslashes(file_get_contents($tempName));
+
+                    //insert into database
+                    if (mysqli_query($conn, "INSERT INTO houseinformationregister(location, size, price, room, 
+                                            bathroom, garage, resident, service, pet, direction, nearby, other, contact, 
+                                            email, pictureURI)
+                                VALUES ('" .$loc. "','".$sz."','".$price."','" .$room. "','".$bathrm."','".$grg."',
+                                '" .$resiType. "','".$ser."','".$pet."','" .$dir. "','".$nrBy."','".$other."',
+                                '" .$contact. "','".$eml."', '".$imgBlob."')")) {
+
+                                    echo "<script type='text/javascript'> alert('House Information Uploaded successgully. Thanks!!!'); </script>";
+                                    header('Location:landlordPage.html');
+                                } else {
+                                    //$flagPhp = false;
+                                    echo "Error: " . "<br>" . mysqli_error($conn) . "could not insert the file";
+                                }
+                }
+                else {
+                    //$flagPhp = false;
+                    $em = "You can not upload file of this type";
+                    echo $em;
+                    //header('Location:houseInformationRegisterPhp.php');
+                }
+            }
+     //error = 0
+        }else {
+            //$flagPhp = false;
+            echo "unknown error occurred!";
+            //header('Location:houseInformationRegisterPhp.php?error=$em');
+        }
+// done for image
+    }else{
+        //$flagPhp = false;
+        echo "file not found error";
+       //header('Location:houseInformationRegisterPhp.php?error=$em');
+    }
+
+//done for register button
+}
+/*else {
+    //$flagPhp = false;
+    echo "did not click on the submit button";
+}*/
+
+
+?>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration</title>
+    <link rel="stylesheet" href="houseInformationRegisterStyle.css">
+</head>
+<body>
+
+  <div style="background-color: black;width: 100%;height: 120px;">
+
+    <div style="background-color: #7a8785;width: 15%;height: 100px;
+    text-align: center;margin-left: 20px;margin-top: 10px;margin-right: 150px;float: left;">
+       <img src="logo.png" style="width: 98%;height: 98px;background-color: blueviolet;">
+    </div>
+
+    <div style="background-color: black;float: left;margin-top: 10px;width: 65%;">
+      <table style="width: 100%; height: 44px;">
+          <tr style=" text-align: center;">
+              <th style=" text-align: center; background-color: black;"><a style="color: white;font-size: 30px;font-weight: bolder;
+                padding: 1%;font-size: 20px; transition: font-size 2s;" href="homePage.html" target="blank">Home</a></th>
+              <th style=" text-align: center; background-color: black;"><a style="color: white;font-size: 30px;font-weight: bolder;
+                padding: 1%;font-size: 20px; transition: font-size 2s;" href="landlordPage.html" target="_blank">Landlord</a></th>
+              <th style=" text-align: center; background-color: black;"><a style="color: white;font-size: 30px;font-weight: bolder;
+                padding: 1%;font-size: 20px; transition: font-size 2s;" href="tenantPage.html" target="_blank">Tenant</astyle=></th>
+              <th style=" text-align: center; background-color: black;"><a style="color: white;font-size: 30px;font-weight: bolder;
+                padding: 1%;font-size: 20px; transition: font-size 2s;" href="fAQPage.html" target="_blank">Help</astyle=></th>
+          </tr>
+      </table>
+    </div>
+  </div>   
+
+
+    <br><br>
+
+    <div class="shadowBoxDiv">
+      <form name="houseInfoRegistrationForms" action="" method="post" enctype="multipart/form-data">
+
+        <p class="heading1">House Information Registration</p>
+
+        <input type="text" id="locationID" name="locationName" placeholder="Location">
+        <?php
+            if(isset($error_msg["locationError"])){
+              echo "<label>" .$error_msg["locationError"]. "</label>";
+            }
+        ?>
+        <!--<label for="" id="locationError"></label><br><br>-->
+        <br><br>
+
+        <input type="text" id="sizeID" name="sizeName" placeholder="Size">
+        <!--
+          <label for="" id="sizeError"></label>
+        <label for="" id="priceError"></label>
+        <label for="" id="roomError"></label>
+        -->
+        <?php
+            if(isset($error_msg["sizeError"])){
+              echo "<label>" .$error_msg["sizeError"]. "</label>";
+            }
+        ?>
+        <br><br>
+
+        <input type="number" id="priceID" name="priceName" placeholder="Price">
+        
+        <?php
+            if(isset($error_msg["priceError"])){
+              echo "<label>" .$error_msg["priceError"]. "</label>";
+            }
+        ?>
+        <br><br>
+
+        <input type="number" id="roomID" name="roomName" placeholder="Room">
+        <?php
+            if(isset($error_msg["roomError"])){
+              echo "<label>" .$error_msg["roomError"]. "</label>";
+            }
+        ?>
+        
+        <br><br>
+
+        <input type="number" id="bathroomID" name="bathroomName" placeholder="Bathroom">
+        <?php
+            if(isset($error_msg["bathroomError"])){
+              echo "<label>" .$error_msg["bathroomError"]. "</label>";
+            }
+        ?>
+        <!--<label for="" id="bathroomError"></label>-->
+        <br><br>
+        
+        <label for="garage">Garage:</label>
+        <span id="garageSpan"></span>
+        
+        <label class="container"> YES
+            <input type="radio" checked="checked" name="radio" id="garageRadioYes" value="Yes">
+            <span class="checkmark" id="radioId"></span>
+          </label>
+          <span style="padding-left: 20px"></span>
+          <label class="container"> NO
+            <input type="radio" name="radio" id="garageRadioNo" value="No">
+            <span class="checkmark" id="radioId"></span>
+          </label><label for="" id="garageError"></label>
+
+          <br><br>
+
+
+        <label for="resident">Resident Type:</label> 
+        <span id="residentSpan"></span>
+
+        <select name="residentName">
+            <option value="NULL">--Select your Resident Type</option>
+            <option value="Private">Private</option>
+            <option value="Appartment">Appartment</option>
+            <option value="Hostel">Hostel</option>
+          </select>
+          <br><span style="padding-left: 230px"></span>
+          <?php
+            if(isset($error_msg["residentError"])){
+              echo "<label>" .$error_msg["residentError"]. "</label>";
+            }
+        ?>
+          <br><br>
+
+
+          <label for="service">Service Charge:</label>
+        <span id="serviceSpan"></span>
+        
+        <label class="container"> included
+            <input type="radio" name="serviceName" id="serviceRadioIN" value="included" <?php 
+            if(isset($serviceName) && $serviceName = 'included'){
+              echo 'checked = "checked"';
+            }
+            ?>
+            />
+            <span class="checkmark" id="radioId"></span>
+        </label>
+          <span style="padding-left: 20px"></span>
+        <label class="container"> not included
+            <input type="radio" name="serviceName" id="serviceRadioNot" value="Not included"  <?php 
+            if(isset($serviceName) && $serviceName = 'Not included'){
+              echo 'checked = "checked"';
+            }
+            ?>
+            />
+            <span class="checkmark" id="radioId"></span>
+        </label>
+        <span style="margin-left: 10px;" id="radioId"></span>
+        <?php
+            if(isset($error_msg["serviceError"])){
+              echo "<label>" .$error_msg["serviceError"]. "</label>";
+            }
+        ?>
+
+          <br><br>
+
+          <label for="pet">Pet allow:</label>
+          <span style="padding-left: 130px;"></span>
+          
+          <label class="container"> YES
+              <input type="radio" checked="checked" name="petName" id="petRadioYes" value="Yes">
+              <span class="checkmark" id="radioId"></span>
+            </label>
+            <span style="padding-left: 20px"></span>
+            <label class="container"> NO
+              <input type="radio" name="petName" id="petRadioNo" value="No">
+              <span class="checkmark" id="radioId"></span>
+            </label>
+          
+          <br><br>
+        
+        <input type="text" id="directionID" name="directionName" placeholder="Direction Facing"><br><br>
+
+
+        <span style="padding-left: 20px"></span>
+        <label for="near">Near by: </label> &nbsp; &nbsp;
+        <label class="container"> Highway
+            <input type="checkbox" checked="checked" name="nearBy[]" value="Highway">
+            <span class="checkmark"></span>
+        </label>
+        <span style="padding-left: 20px"></span>
+        <label class="container"> School
+            <input type="checkbox" name="nearBy[]" value="School">
+            <span class="checkmark"></span>
+        </label>
+        <span style="padding-left: 20px"></span>
+        <label class="container"> Market
+            <input type="checkbox" name="nearBy[]" value="Market">
+            <span class="checkmark"></span>
+        </label>
+        <span style="padding-left: 20px"></span>
+        <label class="container"> Hospital
+            <input type="checkbox" name="nearBy[]" value="Hospital">
+            <span class="checkmark"></span>
+        </label>
+        <span style="padding-left: 20px"></span>
+        <label class="container"> Mosque
+          <input type="checkbox" name="nearBy[]" value="Mosque">
+          <span class="checkmark"></span>
+      </label>
+      <span style="padding-left: 20px"></span>
+      <label class="container"> University
+          <input type="checkbox" name="nearBy[]" value="University">
+          <span class="checkmark"></span>
+      </label>
+      <span style="padding-left: 20px"></span>
+      <label class="container"> College
+        <input type="checkbox" name="nearBy[]" value="College">
+        <span class="checkmark"></span>
+    </label>
+    <span style="padding-left: 20px"></span>
+    <label class="container"> Shopping mall
+        <input type="checkbox" name="nearBy[]" value="Shopping mall">
+        <span class="checkmark"></span>
+    </label>
+    <br><br>
+
+    <input type="text" id="otherID" name="otherName" placeholder="Other information" class="otherClass"><br><br>
+
+    <input type="number" id="cnumberID" name="cnumberName" placeholder="Contact no:">
+    <?php
+            if(isset($error_msg["cnumberError"])){
+              echo "<label>" .$error_msg["cnumberError"]. "</label>";
+            }
+        ?>
+    <br><br>
+    <input type="email" id="emailID" name="emailName" placeholder="Email address:">
+    <?php
+            if(isset($error_msg["emailError"])){
+              echo "<label>" .$error_msg["emailError"]. "</label>";
+            }
+        ?>
+    <!--<label for="" id="contactError"></label>
+      <label for="" id="emailError"></label>-->
+    <br><br>
+
+
+    <br><br>
+    <label for="">Upload Image</label>
+    <input type="file" name="fileName" id="" style="background-color: rgb(51, 94, 9); font-style: italic; font-weight: bolder; color: rgb(245, 232, 227);"> <br><br>
+  
+    <br><br>
+    <span style="padding-left: 210px"></span>
+    <input class="submitButton" type="submit" id="registerButtonID" name="registerButtonName" value="Register"><br><br>        
+    <br><br>          
+        
+</form>
+    </div>
+
+    <br><br>
+
+<footer class ="contact">
+  <section class="sectionOne">
+   <h2>About Us</h2>
+   <i class='fas fa-folder-plus' style='font-size:20px;color:#8b008b;background-color: white; border-radius: 5px; width: 14%; padding-left: 2%;'></i>
+   <input type="button" name="" value="About" onclick="aboutButton()" target="_blank">
+  </section>
+  <section class="sectionTwo">
+   <h2>Contact Us</h2>
+   <i class='fas fa-at' style='font-size:20px;color:red;background-color: white; border-radius: 5px; width: 14%; padding-left: 2%;'></i>
+   <input type="button" name="" value="Email">
+   <br><br>
+   <i class='fas fa-comment' style='font-size:20px;color:blue;background-color: white; border-radius: 5px; width: 14%; padding-left: 2%;'></i>
+   <input type="button" name="" value="Chat">
+  </section>
+  <br><br><br><br><br><br>
+  <div style="margin-left: 25%;">
+   <h2 style="width: 15%;">Feedback</h2>
+   <i class='fas fa-star' style='font-size:20px;color:#94800f;background-color: white; border-radius: 5px; width: 2.5%;'></i>
+   <input  style="margin-left: 1%;" type="button" name="" value="Rate and Comment">
+  </div>
+
+</footer>
+    
+</body>
+<script type="text/javascript">
+  function aboutButton(){
+   document.location.href="aboutUs.html";
+  }
+</script>
+
+</html>
+<?php
+mysqli_close($conn);
+?>

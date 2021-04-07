@@ -1,0 +1,69 @@
+<html>
+  <head>
+     <meta charset = "utf-8">
+     <title> Home Page </title>
+     <link rel="stylesheet" href="homeStyle.css">
+   <body>
+     
+    <div class="headerClass">
+
+      <div class="pictureDiv">
+        <img src="logo.png" class="imgClass">
+      </div>
+  
+      <div class='nav'>
+        <table class='tableClass'>
+            <tr>
+                <th><a href="homePage.html" target="blank">Home</a></th>
+                <th><a href="landlordPage.html" target="_blank">Landlord</a></th>
+                <th><a href="tenantPage.html" target="_blank">Tenant</astyle=></th>
+                <th><a href="fAQPage.html" target="_blank">Help</astyle=></th>
+            </tr>
+        </table>
+      </div>
+    </div>   
+ 
+  <br>
+
+  <div style="text-align: center;">
+    <div class="houseinfoheading">Welcome to our page</div>
+</div>
+<br><br>
+     <div>
+       <img style="width: 100%; height: 621px;" src="rent.jpg" alt="">
+     </div>
+     <br><br>
+
+     <footer class ="contact">
+        <section class="sectionOne">
+         <h2>About Us</h2>
+         <i class='fas fa-folder-plus' style='font-size:20px;color:#8b008b;background-color: white; border-radius: 5px; width: 14%; padding-left: 2%; padding-right: 2%;'></i>
+         <input type="button" name="" value="About" onclick="aboutButton()" target="_blank">
+        </section>
+        <section class="sectionTwo">
+         <h2>Contact Us</h2>
+         <i class='fas fa-at' style='font-size:20px;color:red;background-color: white; border-radius: 5px; width: 14%; padding-left: 2%;'></i>
+         <input type="button" name="" value="Email">
+         <br><br>
+         <i class='fas fa-comment' style='font-size:20px;color:blue;background-color: white; border-radius: 5px; width: 14%; padding-left: 2%;'></i>
+         <input type="button" name="" value="Chat">
+        </section>
+        <br><br><br><br><br><br>
+        <div style="margin-left: 25%;">
+         <h2 style="width: 15%;">Feedback</h2>
+         <i class='fas fa-star' style='font-size:20px;color:#94800f;background-color: white; border-radius: 5px; width: 2.5%;'></i>
+         <input  style="margin-left: 1%;" type="button" name="" value="Rate and Comment" onclick="feedback1Button()" target="_blank">
+        </div>
+   
+      </footer>
+
+   </body>
+   <script type="text/javascript">
+     function aboutButton(){
+      document.location.href="aboutUs.html";
+     }
+     function feedback1Button(){
+      document.location.href="Feedback1.php";
+     }
+   </script>
+</html>

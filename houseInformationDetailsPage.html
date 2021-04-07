@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>house Information Details Page</title>
+    <link rel="stylesheet" href="houseInformationDetailsPageStyle.css">
+</head>
+<body>
+
+    <div class="headerClass">
+
+        <div class="pictureDiv">
+          <img src="logo.png" class="imgClassHeader">
+        </div>
+    
+        <div class='nav'>
+          <table class='tableClass'>
+              <tr>
+                  <th><a href="homePage.html" target="blank">Home</a></th>
+                  <th><a href="landlordPage.html" target="_blank">Landlord</a></th>
+                  <th><a href="tenantPage.html" target="_blank">Tenant</astyle=></th>
+                  <th><a href="fAQPage.html" target="_blank">Help</astyle=></th>
+              </tr>
+          </table>
+        </div>
+      </div>  <br> 
+   
+
+    <div style="text-align: center;">
+        <div class="houseinfoheading">House Information in Details</div>
+    </div>
+    <br><br><br>
+
+    
+    <?php
+        $eml = "";
+        if (isset($_GET["email"])) {
+            $eml = $_GET["email"];
+        }
+
+        include("connection.php");
+
+        $sql = "SELECT * FROM houseinformationregister WHERE email='".$eml."' limit 1";
+        $result = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_assoc($result);
+    ?>
+
+        <div class="backgroundDivClass">
+            <div class="sectionOneLabel">
+                <label>Location: </label><br><br>
+                <label>Size: </label><br><br>
+                <label>Price: </label><br><br>
+                <label>Total Room Number: </label><br><br>
+                <label>Total Bathroom Number: </label><br><br>
+                <label>Has garage: </label><br><br>
+                <label>Resident Type: </label><br><br>
+                <label>Service charge: </label><br><br>
+                <label>Pet allow: </label><br><br>
+                <label>Direction Facing: </label><br><br>
+                <label>Nearby: </label><br><br>
+                <label>Other Information: </label><br><br>
+                <label>Contact Number: </label><br><br>
+                <label>Email address: </label><br><br>
+            </div>
+
+            <div class="sectionTwoLabel">
+                <label><?php echo $row['location']; ?></label><br><br>
+                <label><?php echo $row['size']; ?></label><br><br>
+                <label><?php echo $row['price']; ?></label><br><br>
+                <label><?php echo $row['room']; ?></label><br><br>
+                <label><?php echo $row['bathroom']; ?></label><br><br>
+                <label><?php echo $row['garage']; ?></label><br><br>
+                <label><?php echo $row['resident']; ?></label><br><br>
+                <label><?php echo $row['service']; ?></label><br><br>
+                <label><?php echo $row['pet']; ?></label><br><br>
+                <label><?php echo $row['direction']; ?></label><br><br>
+                <label><?php echo $row['nearby']; ?></label><br><br>
+                <label><?php echo $row['other']; ?></label><br><br>
+                <label><?php echo $row['contact']; ?></label><br><br>
+                <label><?php echo $row['email']; ?></label><br><br>
+            </div>
+            
+        </div>
+
+        <div id="clearFloatDivID"></div>
+
+        <br><br><br>
+        <?php
+            echo "<br><br>";
+            echo '<img class="imgClass" src="data:image; base64,'.base64_encode($row['pictureURI']).'" alt="" >';
+        ?>
+  
+    <br><br><br>
+    <div>
+        <?php
+            echo "<a class='googleMapButton' href='http://www.rokeyasiddiqua.byethost8.com/Beta_Online_House_Rent/googleMapPage.html?address=".$row["location"]."'>
+                View location in Google Map</a><br>";
+        ?> 
+            
+    </div>
+
+    <br><br><br>
+
+     <footer class ="contact">
+        <section class="sectionOne">
+         <h2>About Us</h2>
+         <i class='fas fa-folder-plus' style='font-size:20px;color:#8b008b;background-color: white; border-radius: 5px; width: 14%; padding-left: 2%;'></i>
+         <input type="button" name="" value="About" onclick="aboutButton()" target="_blank">
+        </section>
+        <section class="sectionTwo">
+         <h2>Contact Us</h2>
+         <i class='fas fa-at' style='font-size:20px;color:red;background-color: white; border-radius: 5px; width: 14%; padding-left: 2%;'></i>
+         <input type="button" name="" value="Email">
+         <br><br>
+         <i class='fas fa-comment' style='font-size:20px;color:blue;background-color: white; border-radius: 5px; width: 14%; padding-left: 2%;'></i>
+         <input type="button" name="" value="Chat">
+        </section>
+        <br><br><br><br><br><br>
+        <div style="margin-left: 25%;">
+         <h2 style="width: 15%;">Feedback</h2>
+         <i class='fas fa-star' style='font-size:20px;color:#94800f;background-color: white; border-radius: 5px; width: 2.5%;'></i>
+         <input  style="margin-left: 1%;" type="button" name="" value="Rate and Comment">
+        </div>
+   
+      </footer>
+    
+    
+</body>
+<script type="text/javascript">
+    function aboutButton(){
+     document.location.href="aboutUs.html";
+    }
+  </script>
+</html>
+<?php
+    mysqli_close($conn);
+?>
+
+
+

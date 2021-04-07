@@ -1,0 +1,129 @@
+<?php
+   include("connection.php");
+?>
+
+<html>
+  <head>
+     <meta charset = "utf-8">
+     <title> Tanent Page </title>
+     <link rel="stylesheet" href="tenantPageStyle.css">
+  
+     <script>
+        /******************************* Live search [AJAX] start ************************/
+      /*function usersearchTxt(str) {
+      console.log(str);
+      }*/
+      function usersearchTxt(str) {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function () {
+            if(this.readyState == 4 && this.status == 200){
+               document.getElementById('searchTxt').innerHTML = this.responseText;
+            }
+      }
+      xmlhttp.open("GET","liveSearchAjax.php?search="+str,true);
+      xmlhttp.send();
+      }
+      /******************************* Live search [AJAX] end ************************/
+      </script>
+
+  </head>
+   <body>
+      
+         <div style="background-color: black;width: 100%;height: 120px;">
+
+            <div style="background-color: #7a8785;width: 15%;height: 100px;
+            text-align: center;margin-left: 20px;margin-top: 10px;margin-right: 150px;float: left;">
+               <img src="logo.png" style="width: 98%;height: 98px;background-color: blueviolet;">
+            </div>
+        
+            <div style="background-color: black;float: left;margin-top: 10px;width: 65%;">
+              <table style="width: 100%; height: 44px;">
+                  <tr style=" text-align: center;">
+                      <th style=" text-align: center;"><a style="color: white;font-size: 30px;font-weight: bolder;
+                        padding: 1%;font-size: 20px; transition: font-size 2s;" href="homePage.html" target="blank">Home</a></th>
+                      <th style=" text-align: center;"><a style="color: white;font-size: 30px;font-weight: bolder;
+                        padding: 1%;font-size: 20px; transition: font-size 2s;" href="landlordPage.html" target="_blank">Landlord</a></th>
+                      <th style=" text-align: center;"><a style="color: white;font-size: 30px;font-weight: bolder;
+                        padding: 1%;font-size: 20px; transition: font-size 2s;" href="tenantPage.html" target="_blank">Tenant</astyle=></th>
+                      <th style=" text-align: center;"><a style="color: white;font-size: 30px;font-weight: bolder;
+                        padding: 1%;font-size: 20px; transition: font-size 2s;" href="fAQPage.html" target="_blank">Help</astyle=></th>
+                  </tr>
+              </table>
+            </div>
+          </div>
+       
+    
+    <br>
+  
+        <div class="searchDivClass">
+         <i class='fas fa-search' 
+            style="font-size:20px;
+            color:rgb(110, 106, 106);
+            background-color: white;
+            padding: 5px 5px 5px 5px;
+            margin-left: 20%;">
+         </i>
+         <input type="text" id="searchFormID" name="" onkeyup="usersearchTxt(this.value)" placeholder="Search for house">
+        </div>
+        <br><br>
+
+            <ul id="searchTxt" style='margin-left: 60px'>
+               <?php
+                  include('liveSearchAjax.php');
+                  echo fetch('');
+               ?>
+            </ul>            
+        
+        <br><br><br><br>
+
+     <footer class ="contact">
+        <section class="sectionOne">
+         <h2>About Us</h2>
+         <i class='fas fa-folder-plus' style='font-size:20px;color:#8b008b;background-color: white; border-radius: 5px; width: 14%; padding-left: 2%;'></i>
+         <input type="button" name="" value="About" onclick="aboutButton()" target="_blank">
+        </section>
+        <section class="sectionTwo">
+         <h2>Contact Us</h2>
+         <i class='fas fa-at' style='font-size:20px;color:red;background-color: white; border-radius: 5px; width: 14%; padding-left: 2%;'></i>
+         <input type="button" name="" value="Email">
+         <br><br>
+         <i class='fas fa-comment' style='font-size:20px;color:blue;background-color: white; border-radius: 5px; width: 14%; padding-left: 2%;'></i>
+         <input type="button" name="" value="Chat">
+        </section>
+        <br><br><br><br><br><br>
+        <div style="margin-left: 25%;">
+         <h2 style="width: 15%;">Feedback</h2>
+         <i class='fas fa-star' style='font-size:20px;color:#94800f;background-color: white; border-radius: 5px; width: 2.5%;'></i>
+         <input  style="margin-left: 1%;" type="button" name="" value="Rate and Comment">
+        </div>
+   
+      </footer>
+
+   </body>
+   <script>
+      function detailsInformation(){
+         document.location.href="houseInformationDetailsPage.html";
+      }
+      function aboutButton(){
+         document.location.href="aboutUs.html";
+      }
+
+      //Live search
+      /*$("#searchFormID").on("keyup", function()
+      {
+         var search_term = $(this).val();
+
+         $.ajax({
+            url: "ajaxLiveSearch.php",
+            type: "POST",
+            data: {search: search_term},
+            success: function(data){
+               $("#searchTxt").html(data);
+            }
+         });
+      });*/
+   </script>
+</html>
+<?php
+   mysqli_close($conn);
+?>
