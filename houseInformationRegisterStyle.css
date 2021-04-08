@@ -1,0 +1,282 @@
+body {
+  background-color: #c7b3c4;
+  background-size: cover;
+}
+@media only screen and (max-width: 500px) {
+  body {
+  background-color: lightcoral;
+  }
+}
+/***************** header start ****************************************/
+/********************************************/
+.headerClass{
+  background-color: black;
+  width: 100%;
+  height: 120px;
+}
+.pictureDiv {
+    background-color: #7a8785;
+    width: 15%;
+    height: 100px;
+    text-align: center;
+    margin-left: 20px;
+    margin-top: 10px;
+    margin-right: 150px;
+    float: left;
+}
+.imgClass{
+  width: 98%;
+  height: 98px;
+  background-color: blueviolet;
+}
+.nav {
+    background-color: black;
+    float: left;
+    margin-top: 10px;
+    width: 65%;
+}
+.tableClass {
+    width: 100%; 
+    height: 44px;
+    background-color: black;
+}
+.tableClass tr,th {
+    text-align: center;
+    background-color: black;
+}
+.tableClass a {
+    color: white;
+    background-color: black;
+    font-size: 30px;
+    font-weight: bolder;
+    padding: 1%; 
+    font-size: "20px";
+    transition: font-size 2s;
+}
+.tableClass a:hover {
+    color: darkgreen;
+    cursor: pointer;
+    background-color: darkgray;
+    font-size: 35px;
+}
+
+/*******************************************/
+/*****************************************   header end **********************************/
+
+.shadowBoxDiv{
+  background-color: rgb(89, 187, 187);
+  width: 90%;
+  padding: 15px;
+  padding-top: 30px;
+  box-shadow: 8px 8px 8px 5px black;
+  margin-left: 5%;
+}
+.shadowBoxDiv:hover{
+  border-radius: 90px;
+}
+.heading1{
+  text-align: center;
+  font-size: 60px;
+  font-weight: bolder;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  padding-bottom: 20px;
+  color: #750904;
+  text-shadow: 3px 3px 5px rgb(39, 38, 38);
+  cursor: no-drop;
+}
+/*******************************previous*******************************/
+label {
+  font-family: sans-serif;
+  font-weight: bolder;
+  font-size: 20px;
+  font-stretch: normal;
+  color: darkred;
+}
+label:hover {
+  cursor: no-drop;
+  color: darkgreen;
+}
+
+#garageSpan {
+  margin-left: 13%;
+}
+#residentSpan {
+  padding-left: 82px;
+}
+#serviceSpan{
+  padding-left: 70px;
+}
+#contactSpan {
+  padding-left: 90px;
+}
+
+input{
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  font-size: 20px;
+  background-color: white;
+  padding: 5px 10px 5px 1px;
+  transition: width 0.100s ease-in-out;
+  margin-left: 20%;
+}
+input:focus {
+  background-color: yellow;
+  width: 70%;
+}
+.otherClass{
+    height: 130px; 
+    width: 300px;
+    box-shadow: 5px 8px 5px 0 orange;
+}
+.submitButton {
+  background-color: darkgray;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bolder;
+  font-size: 25px;
+  border-radius: 10px;
+  width: 170px;
+  border: 5px solid darkgreen;
+  color: darkred;
+  padding: 10px;
+}
+.submitButton:hover {
+  box-shadow: 10px 18px 20px 10px rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  cursor: pointer;
+  border: 0px;
+  color: darkgray;
+  background-color: darkred;
+}
+
+.container {
+position: relative;
+padding-left: 25px;
+margin-bottom: 12px;
+cursor: pointer;
+font-size: 18px;
+-webkit-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+color: darkblue;
+}
+
+.container input {
+position: absolute;
+opacity: 0;
+cursor: pointer;
+height: 0;
+width: 0;
+}
+
+.checkmark {
+position: absolute;
+top: 0;
+left: 0;
+height: 18px;
+width: 18px;
+background-color: lightslategray;
+}
+
+.container:hover input ~ .checkmark {
+background-color: #ccc;
+cursor: pointer;
+border: 2px solid navy;
+}
+
+.container input:checked ~ .checkmark {
+background-color: #2196F3;
+}
+
+.checkmark:after {
+content: "";
+position: absolute;
+display: none;
+}
+
+.container input:checked ~ .checkmark:after {
+display: block;
+}
+
+.container .checkmark:after {
+left: 6px;
+top: 0px;
+width: 5px;
+height: 10px;
+border: solid white;
+border-width: 0 3px 3px 0;
+-webkit-transform: rotate(45deg);
+-ms-transform: rotate(45deg);
+transform: rotate(45deg);
+}
+#radioId{
+ border-radius: 50%;
+}
+
+select {
+  appearance: none;
+  background-color: lightcoral;
+  border: 2px solid navy;
+  padding: 8px;
+  margin: 0;
+  width: 70%;
+  font-family: cursive;
+  font-weight: bold;
+  font-size: inherit;
+  cursor: inherit;
+  line-height: inherit;
+  outline: none;
+}
+select:hover {
+    box-shadow: 8px 8px 8px navy;
+    cursor: pointer;
+}
+/********************************************footer start*********************/
+.contact{
+  width: 100%;
+  background: #000;
+  color: white;
+  padding: 10px;
+  font-size: 20px;
+  overflow: auto;
+  border: 5px solid white;
+  
+}
+.contact input{
+  background: none;
+  color: white;
+  font-size: 20px;
+  width: auto;
+  margin: 0 10%;
+  border: 1px solid black;
+}
+.contact input:hover{
+  cursor: pointer;
+  box-shadow: 5px 5px 5px rgb(235, 172, 172);
+  border-radius: 15px;
+  background-color: darkgreen;
+}
+
+.contact h2{
+  font-size: 30px;
+  margin-bottom: 30px;
+  padding: 5px;
+  margin: 5px;
+  background-color: none;
+  width: auto;
+}
+h2:hover{
+  cursor: no-drop;
+  border: 1px solid bisque;
+  border-radius: 10px;
+  background-color: #5a0904;
+  box-shadow: 5px 5px 5px rgb(250, 246, 246);
+}
+.sectionOne {
+  float: left;
+  margin-left: 25%;
+}
+.sectionTwo {
+  float: right;
+  margin-right: 25%;
+}

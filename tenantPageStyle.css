@@ -1,0 +1,176 @@
+@import "https://use.fontawesome.com/releases/v5.5.0/css/all.css";
+body{
+  font-family: sans-serif;
+  background: #c7b3c4;
+  position: absolute;
+}
+@media only screen and (max-width: 500px) {
+  body {
+  background-color: lightcoral;
+  }
+}
+/***************** header start ****************************************/
+/********************************************/
+.headerClass{
+  background-color: black;
+  width: 100%;
+  height: 120px;
+}
+.pictureDivHeader {
+    background-color: #7a8785;
+    width: 15%;
+    height: 100px;
+    text-align: center;
+    margin-left: 20px;
+    margin-top: 10px;
+    margin-right: 150px;
+    float: left;
+}
+.imgClassHeader{
+  width: 98%;
+  height: 98px;
+  background-color: blueviolet;
+}
+.navHeader {
+    background-color: black;
+    float: left;
+    margin-top: 10px;
+    width: 65%;
+}
+.tableClassHeader {
+    width: 100%; 
+    height: 44px;
+}
+.tableClassHeader tr,th {
+    text-align: center;
+}
+.tableClassHeader a {
+    color: white;
+    font-size: 30px;
+    font-weight: bolder;
+    padding: 1%; 
+    font-size: "20px";
+    transition: font-size 2s;
+}
+.tableClassHeader a:hover {
+    color: darkgreen;
+    cursor: pointer;
+    background-color: darkgray;
+    font-size: 35px;
+}
+
+/*******************************************/
+/*****************************************   header end **********************************/
+
+input{
+  box-sizing: border-box;
+  font-size: 20px;
+  background-color: white;
+  padding: 5px 10px 5px 1px;
+  transition: width 0.100s ease-in-out;
+  margin-left: 0.12%;
+  border: none;
+}
+input:focus {
+  background-color: rgb(163, 219, 236);
+  width: 70%;
+}
+.searchDivClass{
+  background-color: white; 
+  border: 2px solid rgb(150, 56, 56); 
+  width: 85%; 
+  margin-left: 8%;
+  border-radius: 20px;
+  box-shadow: 5px 5px 5px brown;
+  margin-top: 30px;
+}
+.listClass{
+  background-color: rgb(49, 116, 49);
+  height: 272px;
+  width: fit-content;
+  margin-bottom: 10px;
+}
+.listClass:hover{
+  cursor: pointer;
+  border-radius: 10px;
+  box-shadow: 5px 10px 8px #5a0904;
+}
+.pictureClass{
+  background-color: white; 
+  float: left;
+  height: 250px;
+  width: 250px;
+  margin: 5px;
+  padding: 5px;
+  border-radius: 5px;
+}
+.detailsClass{
+  background-color: lightcoral; 
+  float: left;
+  height: 250px;
+  width: 500px;
+  margin: 5px;
+  padding: 5px;
+  border-radius: 25px;
+}
+.submitButton{
+  box-shadow: 5px 5px 10px 5px rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  cursor: pointer;
+  border: 0px;
+  color: rgb(250, 244, 244);
+  background-color: darkred;
+  padding: 5px;
+  font-size: 22px;
+  font-weight: bolder;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+/*                                  footer start                                          */
+.contact{
+  width: 100%;
+  background: #000;
+  color: white;
+  padding: 10px;
+  font-size: 20px;
+  overflow: auto;
+  border: 5px solid white;
+  
+}
+.contact input{
+  background: none;
+  color: white;
+  font-size: 20px;
+  width: auto;
+  margin: 0 10%;
+  border: 1px solid black;
+}
+.contact input:hover{
+  cursor: pointer;
+  box-shadow: 5px 5px 5px rgb(235, 172, 172);
+  border-radius: 15px;
+  background-color: darkgreen;
+}
+
+.contact h2{
+  font-size: 30px;
+  margin-bottom: 30px;
+  padding: 5px;
+  margin: 5px;
+  background-color: none;
+  width: auto;
+}
+h2:hover{
+  cursor: no-drop;
+  border: 1px solid bisque;
+  border-radius: 10px;
+  background-color: #5a0904;
+  box-shadow: 5px 5px 5px rgb(250, 246, 246);
+}
+.sectionOne {
+  float: left;
+  margin-left: 25%;
+}
+.sectionTwo {
+  float: right;
+  margin-right: 25%;
+}

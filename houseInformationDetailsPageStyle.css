@@ -1,0 +1,198 @@
+body {
+    background-color: #d5e0d8;
+}
+@media only screen and (max-width: 500px) {
+    body {
+    background-color: lightcoral;
+    }
+}
+
+/***************** header start ****************************************/
+/********************************************/
+.headerClass{
+  background-color: black;
+  width: 100%;
+  height: 120px;
+}
+.pictureDiv {
+    background-color: #7a8785;
+    width: 15%;
+    height: 100px;
+    text-align: center;
+    margin-left: 20px;
+    margin-top: 10px;
+    margin-right: 150px;
+    float: left;
+}
+.imgClassHeader{
+  width: 98%;
+  height: 98px;
+  background-color: blueviolet;
+}
+.nav {
+    background-color: black;
+    float: left;
+    margin-top: 10px;
+    width: 65%;
+}
+.tableClass {
+    width: 100%; 
+    height: 44px;
+}
+.tableClass tr,th {
+    text-align: center;
+}
+.tableClass a {
+    color: white;
+    font-size: 30px;
+    font-weight: bolder;
+    padding: 1%; 
+    font-size: "20px";
+    transition: font-size 2s;
+}
+.tableClass a:hover {
+    color: darkgreen;
+    cursor: pointer;
+    background-color: darkgray;
+    font-size: 35px;
+}
+
+/*******************************************/
+/*****************************************   header end **********************************/
+
+
+
+.houseinfoheading{
+    font-size: 60px;
+    font-weight: bolder;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: #5a0904;
+    animation: move 15s linear infinite;
+}
+@keyframes move {
+  0% {
+    transform: translate(0);
+    opacity: 0;
+  }
+  50% {
+    transform: translate(50%);
+    opacity: 1;
+  }
+}
+.houseinfoheading:hover{
+    cursor: no-drop;
+}
+.backgroundDivClass{
+    background-color: rgba(34, 34, 32, 0.133); 
+    width: 90%; 
+    height: 700px; 
+    margin-left: 5%;
+    box-shadow: 15px 15px 15px black;
+}
+.googleMapButton{
+    box-shadow: 5px 5px 10px 5px rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    cursor: pointer;
+    border: 0px;
+    color: rgb(250, 244, 244);
+    background-color: darkred;
+    padding: 5px;
+    font-size: 22px;
+    font-weight: bolder;
+    font-family: 'Courier New', Courier, monospace;
+    margin-left: 40%;
+  }
+.sectionOneLabel {
+    margin-left: 10%;
+    float: left;
+    margin-top: 5%;
+}
+#clearFloatDivID{
+    clear: both;
+}
+.sectionTwoLabel {
+    margin-left: 4%;
+    float: left;
+    margin-top: 5%;
+    font-weight: bolder;
+}
+.sectionOneLabel label {
+    font-family: sans-serif;
+    font-weight: bolder;
+    font-size: 20px;
+    color: darkred;
+}
+.sectionOneLabel label:hover {
+    cursor: no-drop;
+    color: darkgreen;
+}
+.sectionTwoLabel label {
+    font-family: serif;
+    font-weight: normal;
+    font-size: 20px;
+    color: rgb(38, 7, 87);
+}
+.sectionTwoLabel label:hover {
+    cursor: no-drop;
+    color: rgb(77, 48, 5);
+}
+.imgClass{
+    margin-left: 20%;
+    width: 700px; 
+    height: 700px; 
+    text-align: center;
+    transition: all 2s transform 0.1s  ease-in-out;
+}
+.imgClass:hover{
+    width: 900px;
+    height: 900px;
+    cursor: zoom-in;
+}
+/*************************************footer start**********************************/
+.contact{
+    width: 100%;
+    background: #000;
+    color: white;
+    padding: 10px;
+    font-size: 20px;
+    overflow: auto;
+    border: 5px solid white;   
+  }
+  .contact input{
+    background: none;
+    color: white;
+    font-size: 20px;
+    width: auto;
+    margin: 0 10%;
+    border: 1px solid black;
+  }
+  .contact input:hover{
+    cursor: pointer;
+    box-shadow: 5px 5px 5px rgb(235, 172, 172);
+    border-radius: 15px;
+    background-color: darkgreen;
+  }
+  
+  .contact h2{
+    font-size: 30px;
+    margin-bottom: 30px;
+    padding: 5px;
+    margin: 5px;
+    background-color: none;
+    width: auto;
+  }
+  h2:hover{
+    cursor: no-drop;
+    border: 1px solid bisque;
+    border-radius: 10px;
+    background-color: #5a0904;
+    box-shadow: 5px 5px 5px rgb(250, 246, 246);
+  }
+  .sectionOne {
+    float: left;
+    margin-left: 25%;
+    position: absolute;
+  }
+  .sectionTwo {
+    float: left;
+    margin-right: 25%;
+  }
